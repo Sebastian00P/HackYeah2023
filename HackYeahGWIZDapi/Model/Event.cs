@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace HackYeahGWIZDapi.Model
 {
@@ -10,6 +11,7 @@ namespace HackYeahGWIZDapi.Model
         public virtual User User { get; set; }
         public virtual EventPhoto EventPhotos { get; set; }
         public virtual Animal Animal { get; set; }
+        public DateTime Date { get; set; }
 
     }
 }
