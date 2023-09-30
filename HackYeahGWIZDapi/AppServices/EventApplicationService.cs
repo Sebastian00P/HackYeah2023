@@ -1,4 +1,5 @@
 ﻿using HackYeahGWIZDapi.AppContext;
+using HackYeahGWIZDapi.AppModule;
 using HackYeahGWIZDapi.Model;
 using HackYeahGWIZDapi.ViewModel;
 using Microsoft.EntityFrameworkCore;
@@ -11,11 +12,11 @@ namespace HackYeahGWIZDapi.AppServices
 {
     public class EventApplicationService :IEventApplicationService
     {
-        private readonly ApplicationContext _context;
+        private readonly ApplicationContext _context;   
 
         public EventApplicationService(ApplicationContext applicationContext)
         {
-            _context = applicationContext;
+            _context = applicationContext;        
         }
 
         public async Task Create(Event _event)
@@ -70,7 +71,7 @@ namespace HackYeahGWIZDapi.AppServices
         public async Task UpdateExpiredTime(Event _event)
         {
             var currentDate = DateTime.Now;
-            _event.ExpiredTime = currentDate;
+            _event.ExpiredTime = currentDate.AddHours(1);
             _context.Events.Update(_event);
             await _context.SaveChangesAsync();
         }

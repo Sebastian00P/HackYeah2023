@@ -62,8 +62,8 @@ namespace HackYeahGWIZDapi
 
             app.UseHttpsRedirection();
             app.UseHangfireDashboard();
-            backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
-            RecurringJob.AddOrUpdate(() => jobApplicationService.CheckMultiplyEvents(), Cron.MinuteInterval(20));
+            backgroundJobs.Enqueue(() => Console.WriteLine("Hangfire!"));
+            RecurringJob.AddOrUpdate(() => jobApplicationService.CheckMultiplyEvents(), Cron.MinuteInterval(1));
 
             app.UseRouting();
 
