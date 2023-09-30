@@ -45,8 +45,8 @@ namespace HackYeahGWIZDapi.AppServices
                     User = item.User,
                     EventPhotos = item.EventPhotos,
                     EventId = item.EventId,
-                    Date = item.Date.ToString("yyyy-MM-dd HH:mm:ss"),
-                    ExpiredTime = item.ExpiredTime.ToString("yyyy-MM-dd HH:mm:ss")
+                    Date = ((DateTimeOffset)item.Date).ToUnixTimeSeconds().ToString(), 
+                    ExpiredTime = ((DateTimeOffset)item.ExpiredTime).ToUnixTimeSeconds().ToString()
 
                 });
             }
