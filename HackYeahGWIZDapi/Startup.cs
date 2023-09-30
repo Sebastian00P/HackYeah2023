@@ -1,4 +1,5 @@
 using HackYeahGWIZDapi.AppContext;
+using HackYeahGWIZDapi.AppServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,7 @@ namespace HackYeahGWIZDapi
         {
 
             services.AddControllers();
+            services.AddScoped<IEventApplicationService, EventApplicationService>();
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
             services.AddSwaggerGen(c =>
             {

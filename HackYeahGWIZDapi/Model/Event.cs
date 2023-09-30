@@ -12,6 +12,7 @@ namespace HackYeahGWIZDapi.Model
         public virtual EventPhoto EventPhotos { get; set; }
         public virtual Animal Animal { get; set; }
         public DateTime Date { get; set; }
+        public DateTime ExpiredTime { get; set; }
 
     }
 }
