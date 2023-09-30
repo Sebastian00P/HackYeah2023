@@ -19,15 +19,25 @@ namespace HackYeahGWIZDapi.AppModule
         public async Task CheckMultiplyEvents()
         {
             var notExpireEvents = await _eventApplicationService.GetAllNotExpired();
-            var groups = notExpireEvents.GroupBy(x => x.AnimalId).ToList();
+            var groups = notExpireEvents.GroupBy(x => x.AnimalId).Select(group => new
+            {
+                AnimalId = group.Key,
+                Count = group.Count()
+            })
+            .ToList();
             var eventsToUpdate = new List<Event>();
             foreach (var item in groups)
             {
-                if (item.Count() >= NymberOfSameAnimals)
+                if (item.Count >= NymberOfSameAnimals)
                 {
-                    //eventsToUpdate = notExpireEvents.Where(x => x.AnimalId == item)
+                    eventsToUpdate = notExpireEvents.Where(x => x.AnimalId == item.AnimalId).ToList();
+                    foreach (var element in eventsToUpdate)
+                    {
+                        await _eventApplicationService.UpdateExpiredTime(element);
+                    }
                 }
             }
+            
         }
     }
 }

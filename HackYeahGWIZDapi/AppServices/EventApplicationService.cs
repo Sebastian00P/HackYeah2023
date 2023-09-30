@@ -67,6 +67,13 @@ namespace HackYeahGWIZDapi.AppServices
                 return new List<Event>();       
             }                    
         }
+        public async Task UpdateExpiredTime(Event _event)
+        {
+            var currentDate = DateTime.Now;
+            _event.ExpiredTime = currentDate;
+            _context.Events.Update(_event);
+            await _context.SaveChangesAsync();
+        }
 
     }
 }
