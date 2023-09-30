@@ -1,5 +1,6 @@
 ﻿using HackYeahGWIZDapi.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace HackYeahGWIZDapi.AppContext
 {
@@ -15,5 +16,7 @@ namespace HackYeahGWIZDapi.AppContext
         public DbSet<EventPhoto> EventPhotos { get; set; }
         public DbSet<Localization> Localizations { get; set; }
         public DbSet<User> Users { get; set; }
+
+
     }
 }
