@@ -32,6 +32,7 @@ namespace HackYeahGWIZDapi
 
             services.AddControllers();
             services.AddScoped<IEventApplicationService, EventApplicationService>();
+            services.AddScoped<IAnimalApplicationService, AnimalApplicationService>();
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
             services.AddSwaggerGen(c =>
             {

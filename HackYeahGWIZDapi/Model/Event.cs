@@ -10,9 +10,9 @@ namespace HackYeahGWIZDapi.Model
         public virtual Localization Localization { get; set; }
         public virtual User User { get; set; }
         public virtual EventPhoto EventPhotos { get; set; }
-        public virtual Animal Animal { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime ExpiredTime { get; set; }
+        public long AnimalId { get; set; }
+        public DateTime Date => DateTime.Now;
+        public DateTime ExpiredTime => DateTime.Now.AddHours(1);
 
     }
 }

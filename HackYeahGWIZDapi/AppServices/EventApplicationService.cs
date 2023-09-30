@@ -24,8 +24,7 @@ namespace HackYeahGWIZDapi.AppServices
                 Localization = _event.Localization,
                 User = _event.User,
                 EventPhotos = _event.EventPhotos,
-                Animal = _event.Animal,
-                Date = _event.Date
+                AnimalId = _event.AnimalId
             };
             await _context.Events.AddAsync(newEvent);
             await _context.SaveChangesAsync();
