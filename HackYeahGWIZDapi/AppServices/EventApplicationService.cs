@@ -25,7 +25,9 @@ namespace HackYeahGWIZDapi.AppServices
                 Localization = _event.Localization,
                 User = _event.User,
                 EventPhotos = _event.EventPhotos,
-                AnimalId = _event.AnimalId
+                AnimalId = _event.AnimalId,
+                Date = DateTime.Now,
+                ExpiredTime = DateTime.Now.AddHours(1)
             };
             await _context.Events.AddAsync(newEvent);
             await _context.SaveChangesAsync();
@@ -51,6 +53,19 @@ namespace HackYeahGWIZDapi.AppServices
                 });
             }
             return eventVieModel;
+        }
+        public async Task<List<Event>> GetAllNotExpired()
+        {
+            try
+            {
+                var currentDate = DateTime.Now;
+                var events = await _context.Events.Where(x => x.Date >= currentDate.AddHours(-1)).ToListAsync();
+                return events;
+            }
+            catch (Exception ex)
+            {
+                return new List<Event>();       
+            }                    
         }
 
     }

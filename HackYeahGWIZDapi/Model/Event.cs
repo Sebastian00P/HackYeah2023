@@ -11,8 +11,8 @@ namespace HackYeahGWIZDapi.Model
         public virtual User User { get; set; }
         public virtual EventPhoto EventPhotos { get; set; }
         public long AnimalId { get; set; }
-        public DateTime Date => DateTime.Now;
-        public DateTime ExpiredTime => DateTime.Now.AddHours(1);
+        public DateTime? Date { get; set; }
+        public DateTime? ExpiredTime { get; set; }
 
     }
 }

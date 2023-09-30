@@ -10,5 +10,6 @@ namespace HackYeahGWIZDapi.AppServices
     {
         Task Create(Event _event);
         Task<List<EventViewModel>> GetAll();
+        Task<List<Event>> GetAllNotExpired();
     }
 }
