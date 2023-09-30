@@ -1,5 +1,6 @@
 ﻿using HackYeahGWIZDapi.AppServices;
 using HackYeahGWIZDapi.Model;
+using HackYeahGWIZDapi.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,7 +21,7 @@ namespace HackYeahGWIZDapi.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public async Task<List<Event>> GetAll()
+        public async Task<List<EventViewModel>> GetAll()
         {
             return await _eventApplicationService.GetAll();
         }
