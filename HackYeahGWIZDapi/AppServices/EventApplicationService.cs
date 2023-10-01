@@ -57,13 +57,14 @@ namespace HackYeahGWIZDapi.AppServices
         }
         public async Task<List<EventViewModel>> GetAll()
         {
-            var allEvents = await _context.Events
+            var currentDate = DateTime.Now;
+            var allEvents = await _context.Events.Where(x => x.ExpiredTime >= currentDate)
                 .Include(x => x.Localization)
                 .Include(x => x.EventPhotos)
                 .Include(x => x.User)
                 .ToListAsync();
-            var currentDate = DateTime.Now;
-            var allEventsFiltered = allEvents.Where(x => x.ExpiredTime >= currentDate).ToList();
+          
+            var allEventsFiltered = allEvents.ToList();
             var eventVieModel = new List<EventViewModel>();
             foreach (var item in allEventsFiltered)
             {

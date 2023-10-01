@@ -72,20 +72,24 @@ namespace HackYeahGWIZDapi.AppModule
                 if (group.Count >= 4)
                 {
                     var localizations = group.Select(x => x.Localization).ToList();
-                    var latlons = new LatLon[] { };
+                    var latlons = new List<LatLon>();
                     foreach (var item in localizations)
                     {
-                        latlons.Append(new LatLon((float)item.Latitude, (float)item.Longitude));
+                        latlons.Add(new LatLon((float)item.Latitude, (float)item.Longitude));
                     }
-                   
-                    predictedPoint = LatLon.ReturnPredictedPoint(latlons);
-                    var element = group.OrderByDescending((x) => x.Date).FirstOrDefault();
 
-                    await _predictionPointApplicationService.Create(new PredictionEvent()
+                    if (latlons.Count > 0)
                     {
-                        Localization = predictedPoint,
-                        Photo = element.EventPhotos
-                    });
+                        predictedPoint = LatLon.ReturnPredictedPoint(latlons.ToArray());
+                        var element = group.OrderByDescending((x) => x.Date).FirstOrDefault();
+
+                        await _predictionPointApplicationService.Create(new PredictionEvent()
+                            {
+                                Localization = predictedPoint,
+                                Photo = element.EventPhotos
+                            });
+                    }
+                    
                     // Add to new table
                 }
             }

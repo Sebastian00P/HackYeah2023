@@ -25,7 +25,7 @@ namespace HackYeahGWIZDapi.AppServices
 
         public async Task<List<PredictionEvent>> GetAll()
         {
-            return await _context.PredictionEvents.ToListAsync();
+            return await _context.PredictionEvents.Include(x =>x.Localization).Include(x => x.Photo).ToListAsync();
         }
     }
 }
