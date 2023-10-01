@@ -65,6 +65,7 @@ namespace HackYeahGWIZDapi
             app.UseHangfireDashboard();
             backgroundJobs.Enqueue(() => Console.WriteLine("Hangfire!"));
             RecurringJob.AddOrUpdate(() => jobApplicationService.CheckMultiplyEvents(), Cron.MinuteInterval(1));
+            RecurringJob.AddOrUpdate(() => jobApplicationService.PredictNextLocationForEventGroupsInCloseProximity(), Cron.MinuteInterval(1));
 
             app.UseRouting();
 
