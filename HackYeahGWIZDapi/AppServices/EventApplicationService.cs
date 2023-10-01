@@ -86,7 +86,7 @@ namespace HackYeahGWIZDapi.AppServices
             try
             {
                 var currentDate = DateTime.Now;
-                var events = await _context.Events.Where(x => x.Date >= currentDate.AddHours(-1)).ToListAsync();
+                var events = await _context.Events.Include(x => x.Localization).Where(x => x.Date >= currentDate.AddHours(-1)).ToListAsync();
                 return events;
             }
             catch (Exception ex)
