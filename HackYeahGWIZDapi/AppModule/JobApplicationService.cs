@@ -48,7 +48,7 @@ namespace HackYeahGWIZDapi.AppModule
 
                         if(distance < DistanceToUpdate)
                         {
-                            await _eventApplicationService.UpdateExpiredTime(eventsToUpdate[i+1]);
+                            await _eventApplicationService.UpdateExpiredTime(eventsToUpdate[i+1], eventsToUpdate[0]);
                         }
 
                     }

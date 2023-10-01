@@ -11,6 +11,6 @@ namespace HackYeahGWIZDapi.AppServices
         Task Create(EventViewModel _event);
         Task<List<EventViewModel>> GetAll();
         Task<List<Event>> GetAllNotExpired();
-        Task UpdateExpiredTime(Event _event);
+        Task UpdateExpiredTime(Event _event, Event _secondEvent);
     }
 }

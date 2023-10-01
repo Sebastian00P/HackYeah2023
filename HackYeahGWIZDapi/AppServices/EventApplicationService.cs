@@ -94,10 +94,9 @@ namespace HackYeahGWIZDapi.AppServices
                 return new List<Event>();       
             }                    
         }
-        public async Task UpdateExpiredTime(Event _event)
+        public async Task UpdateExpiredTime(Event _event, Event _secondEvent)
         {
-            var currentDate = DateTime.Now;
-            _event.ExpiredTime = currentDate.AddHours(1);
+            _event.ExpiredTime = _secondEvent.ExpiredTime;
             _context.Events.Update(_event);
             await _context.SaveChangesAsync();
         }
