@@ -16,6 +16,7 @@ namespace HackYeahGWIZDapi.AppContext
         public DbSet<EventPhoto> EventPhotos { get; set; }
         public DbSet<Localization> Localizations { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<PredictionEvent> PredictionEvents { get; set; }
 
 
     }
