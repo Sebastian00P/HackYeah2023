@@ -6,7 +6,7 @@ namespace HackYeahGWIZDapi.Model
     public class Event
     {
         [Key]
-        public long EventId { get; set; }
+        public long? EventId { get; set; }
         public virtual Localization Localization { get; set; }
         public virtual User User { get; set; }
         public virtual EventPhoto EventPhotos { get; set; }

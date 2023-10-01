@@ -8,7 +8,7 @@ namespace HackYeahGWIZDapi.ViewModel
 {
     public class EventViewModel
     {
-        public long EventId { get; set; }
+        public long? EventId { get; set; }
         public Localization Localization { get; set; }
         public User User { get; set; }
         public EventPhoto EventPhotos { get; set; }
