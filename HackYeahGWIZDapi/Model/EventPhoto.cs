@@ -6,7 +6,7 @@ namespace HackYeahGWIZDapi.Model
     public class EventPhoto
     {
         [Key]
-        public long PhotoId { get; set; }
+        public long? PhotoId { get; set; }
         public string Image { get; set; }
 
     }
