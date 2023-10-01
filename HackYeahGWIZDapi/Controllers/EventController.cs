@@ -27,7 +27,7 @@ namespace HackYeahGWIZDapi.Controllers
         }
         [HttpPost]
         [Route("Create")]
-        public async Task Create(Event _event)
+        public async Task Create(EventViewModel _event)
         {
             await _eventApplicationService.Create(_event);
         }

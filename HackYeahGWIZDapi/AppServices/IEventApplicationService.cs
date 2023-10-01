@@ -8,7 +8,7 @@ namespace HackYeahGWIZDapi.AppServices
 {
     public interface IEventApplicationService
     {
-        Task Create(Event _event);
+        Task Create(EventViewModel _event);
         Task<List<EventViewModel>> GetAll();
         Task<List<Event>> GetAllNotExpired();
         Task UpdateExpiredTime(Event _event);

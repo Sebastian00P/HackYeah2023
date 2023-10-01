@@ -36,7 +36,7 @@ namespace HackYeahGWIZDapi.Migrations
 
             modelBuilder.Entity("HackYeahGWIZDapi.Model.Event", b =>
                 {
-                    b.Property<long>("EventId")
+                    b.Property<long?>("EventId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
@@ -56,8 +56,8 @@ namespace HackYeahGWIZDapi.Migrations
                     b.Property<long?>("LocalizationId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("EventId");
 
@@ -105,8 +105,10 @@ namespace HackYeahGWIZDapi.Migrations
 
             modelBuilder.Entity("HackYeahGWIZDapi.Model.User", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("UserId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
@@ -130,7 +132,7 @@ namespace HackYeahGWIZDapi.Migrations
                         .HasForeignKey("LocalizationId");
 
                     b.HasOne("HackYeahGWIZDapi.Model.User", "User")
-                        .WithMany()
+                        .WithMany("Events")
                         .HasForeignKey("UserId");
 
                     b.Navigation("EventPhotos");
@@ -138,6 +140,11 @@ namespace HackYeahGWIZDapi.Migrations
                     b.Navigation("Localization");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("HackYeahGWIZDapi.Model.User", b =>
+                {
+                    b.Navigation("Events");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,26 +12,48 @@ namespace HackYeahGWIZDapi.AppServices
 {
     public class EventApplicationService :IEventApplicationService
     {
-        private readonly ApplicationContext _context;   
+        private readonly ApplicationContext _context;
+        private readonly IUserApplicationService _userApplicationService;
 
-        public EventApplicationService(ApplicationContext applicationContext)
+        public EventApplicationService(ApplicationContext applicationContext, IUserApplicationService userApplicationService)
         {
-            _context = applicationContext;        
+            _context = applicationContext;   
+            _userApplicationService = userApplicationService;
         }
 
-        public async Task Create(Event _event)
+        public async Task Create(EventViewModel _event)
         {
-            var newEvent = new Event
+            var users = await _userApplicationService.GetAll();
+            var currentUser = users.FirstOrDefault(x => x.Phone == _event.User.Phone);
+            if (currentUser != null)
             {
-                Localization = _event.Localization,
-                User = _event.User,
-                EventPhotos = _event.EventPhotos,
-                AnimalId = _event.AnimalId,
-                Date = DateTime.Now,
-                ExpiredTime = DateTime.Now.AddHours(1)
-            };
-            await _context.Events.AddAsync(newEvent);
-            await _context.SaveChangesAsync();
+                var newEvent = new Event
+                {
+                    Localization = _event.Localization,
+                    User = currentUser,
+                    EventPhotos = _event.EventPhotos,
+                    AnimalId = _event.AnimalId,
+                    Date = DateTime.Now,
+                    ExpiredTime = DateTime.Now.AddHours(1)
+                };
+                await _context.Events.AddAsync(newEvent);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                var newEvent = new Event
+                {
+                    Localization = _event.Localization,
+                    User = _event.User,
+                    EventPhotos = _event.EventPhotos,
+                    AnimalId = _event.AnimalId,
+                    Date = DateTime.Now,
+                    ExpiredTime = DateTime.Now.AddHours(1)
+                };
+                await _context.Events.AddAsync(newEvent);
+                await _context.SaveChangesAsync();
+            }
+           
         }
         public async Task<List<EventViewModel>> GetAll()
         {

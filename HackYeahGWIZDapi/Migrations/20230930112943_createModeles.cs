@@ -50,7 +50,7 @@ namespace HackYeahGWIZDapi.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<long>(type: "bigint", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Phone = table.Column<int>(type: "int", nullable: false)
                 },
@@ -66,7 +66,7 @@ namespace HackYeahGWIZDapi.Migrations
                     EventId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     LocalizationId = table.Column<long>(type: "bigint", nullable: true),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserId = table.Column<long>(type: "bigint", nullable: true),
                     EventPhotosPhotoId = table.Column<long>(type: "bigint", nullable: true),
                     AnimalId = table.Column<long>(type: "bigint", nullable: true)
                 },
